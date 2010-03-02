@@ -39,29 +39,50 @@ class AltoElement
         $this->_width = $element->getAttribute('default:WIDTH');
     }
     
+    /**
+     * Scale Elements vertically and horizontally
+     * @param mixed $vScale Vertical Scale ratio 
+     * @param mixed $hScale Horizontal Scale ratio 
+     */
     public function scale($vScale, $hScale) 
     {
-        $this->_hPos   = floor($this->_hPos  * $hScale);
-        $this->_vPos   = floor($this->_vPos  * $vScale);
-        $this->_height = ceil($this->_height * $vScale);
-        $this->_width  = ceil($this->_width  * $hScale);
+        $this->_hPos   = floor($this->_hPos  * (float) $hScale);
+        $this->_vPos   = floor($this->_vPos  * (float) $vScale);
+        $this->_height = ceil($this->_height * (float) $vScale);
+        $this->_width  = ceil($this->_width  * (float) $hScale);
     }
     
+    /**
+     * Get Horizontal Position of Element
+     * @return int
+     */
     public function getHPos() 
     {
         return $this->_hPos;
     }
     
+    /**
+     * Get Vertical Position of Element 
+     * @return int
+     */
     public function getVPos() 
     {
         return $this->_vPos;
     }
 
+    /**
+     * Get Height of Element 
+     * @return int
+     */
     public function getHeight() 
     {
         return $this->_height;
     }
     
+    /**
+     * Get Width of Element 
+     * @return int
+     */
     public function getWidth() 
     {
         return $this->_width;

@@ -29,7 +29,15 @@ class AltoViewer
     protected $_vScale;
     
     protected $_hScale;
-    
+
+    /**
+     * Scale Elements vertically and horizontally
+     * @param mixed $altoDir Directory holding ALTO files 
+     * @param mixed $altoDir Directory holding Image files
+     * @param mixed $fileId name of file without suffix 
+     * @param float $vScale Vertical scale ratio
+     * @param float $hScale Horizontal scale ratio
+     */    
     public function __construct($altoDir, $imageDir, $fileId, $vScale, $hScale) 
     {
         $this->_altoDir = $altoDir;
@@ -39,15 +47,23 @@ class AltoViewer
         $this->_hScale = $hScale;    
         
         $this->_loadAlto($this->_altoDir . DIRECTORY_SEPARATOR . $this->_fileId . '.xml');
-        $this->_setImageSize();        
+        $this->_setImageSize();
     }
-    
+
+    /**
+     * Load ALTO File
+     * @param mixed $altoFilename ALTO Filename
+     */        
     protected function _loadAlto($altoFilename) 
     {
         $this->_altoDom = new DOMDocument;
         $this->_altoDom->load($altoFilename);    
     }
 
+    /**
+     * Get Strings from within the ALTO Document
+     * @return array of AltoElements
+     */    
     public function getStrings() 
     {
         $strings = $this->_altoDom->getElementsByTagName('String');
@@ -60,6 +76,10 @@ class AltoViewer
         return $return;
     }
     
+    /**
+     * Get TextLines from within the ALTO Document
+     * @return array of AltoElements  
+     */    
     public function getTextLines() 
     {
         $textLines = $this->_altoDom->getElementsByTagName('TextLine');
@@ -72,6 +92,10 @@ class AltoViewer
         return $return;
     }
     
+    /**
+     * Get TextLines from within the ALTO Document
+     * @return array of AltoElements
+     */    
     public function getTextBlocks() 
     {
         $textBlocks = $this->_altoDom->getElementsByTagName('TextBlock');
@@ -84,6 +108,10 @@ class AltoViewer
         return $return;
     }
 
+    /**
+     * Get PrintSpace from within the ALTO Document
+     * @return AltoElement
+     */    
     public function getPrintSpace() 
     {
         $printSpace = $this->_altoDom->getElementsByTagName('PrintSpace');
@@ -91,11 +119,19 @@ class AltoViewer
         $p->scale($this->_vScale, $this->_hScale);
         return $p;
     }
+    
+    /**
+     * Set Image Size
+     */    
     protected function _setImageSize() 
     {
         $this->_imageSize = getimagesize(($this->_imageDir . DIRECTORY_SEPARATOR . $this->_fileId . '.tif.png'));
     }
     
+    /**
+     * Get Image Size
+     * @return array
+     */
     public function getImageSize() 
     {
         return $this->_imageSize;
