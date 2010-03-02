@@ -19,11 +19,6 @@ $vScale = $_REQUEST['vScale'];
 $hScale = $_REQUEST['hScale'];
 $image = $_REQUEST['image'];
 
-$showStrings =  (bool) $_REQUEST['strings'];
-$showTextLines = (bool) $_REQUEST['textLines'];
-$showTextBlocks = (bool) $_REQUEST['textBlocks'];
-$showPrintSpace = (bool) $_REQUEST['printSpace'];
-
 $altoViewer = new AltoViewer(   '/Users/dof/Development/Source/altoview/alto', 
                                 '/Users/dof/Development/Source/altoview/images', 
                                 $image, $vScale, $hScale);
@@ -41,8 +36,15 @@ $scaledWidth = $imageSize[0] * $hScale;
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>          
     </head>
     <body>
+        <h4>Toggle Layers</h4>
+        <button id="strings" >Strings</button><br />
+        <button id="lines" >TextLine</button><br />
+        <button id="blocks" >TextBlock</button><br />
+        <button id="printspace" >PrintSpace</button><br />
+        
         <div id="info">
             <table>
                 <tr>
@@ -61,54 +63,65 @@ $scaledWidth = $imageSize[0] * $hScale;
                 src="images/<?php echo $image; ?>.tif.png" 
                 width="<?php echo $scaledWidth; ?>" 
                 height="<?php echo $scaledHeight; ?>" />
-            
-            <?php if ($showStrings) { ?>
-                <?php foreach ($strings as $string) { ?>
-                    <div class="highlight-string" 
-                        style=" left: <?php echo $string->getHPos(); ?>px; 
-                                top: <?php echo $string->getVPos(); ?>px; 
-                                width: <?php echo $string->getWidth(); ?>px; 
-                                height: <?php echo $string->getHeight(); ?>px; 
-                                filter: alpha(opacity=50)" >
-                    </div>
-                <?php } ?>
-            <?php } ?>
-            
-            <?php if ($showTextLines) { ?>
-                <?php foreach ($textLines as $textLine) { ?>
-                    <div class="highlight-line" 
-                        style=" left: <?php echo $textLine->getHPos(); ?>px; 
-                                top: <?php echo $textLine->getVPos(); ?>px; 
-                                width: <?php echo $textLine->getWidth(); ?>px; 
-                                height: <?php echo $textLine->getHeight(); ?>px; 
-                                filter: alpha(opacity=50)" >
-                    </div>
-                <?php } ?>
-            <?php } ?>
-            
-            <?php if ($showTextBlocks) { ?>
-                <?php foreach ($textBlocks as $textBlock) { ?>
-                    <div class="highlight-block" 
-                        style=" left: <?php echo $textBlock->getHPos(); ?>px; 
-                                top: <?php echo $textBlock->getVPos(); ?>px; 
-                                width: <?php echo $textBlock->getWidth(); ?>px; 
-                                height: <?php echo $textBlock->getHeight(); ?>px; 
-                                filter: alpha(opacity=50)" >
-                    </div>
-                <?php } ?>
-            <?php } ?>
-
-            <?php if ($showPrintSpace) { ?>
-                <div class="highlight-printspace" 
-                    style=" left: <?php echo $printSpace->getHPos(); ?>px; 
-                            top: <?php echo $printSpace->getVPos(); ?>px; 
-                            width: <?php echo $printSpace->getWidth(); ?>px; 
-                            height: <?php echo $printSpace->getHeight(); ?>px; 
+            <?php foreach ($strings as $string) { ?>
+                <div class="highlighter" id="highlight-string" 
+                    style=" left: <?php echo $string->getHPos(); ?>px; 
+                            top: <?php echo $string->getVPos(); ?>px; 
+                            width: <?php echo $string->getWidth(); ?>px; 
+                            height: <?php echo $string->getHeight(); ?>px; 
                             filter: alpha(opacity=50)" >
                 </div>
-            
             <?php } ?>
+            <script>
+                $("button[id*=strings]").click(function () {
+                $("div[id*=highlight-string]").toggle();
+                });    
+            </script>
             
+            <?php foreach ($textLines as $textLine) { ?>
+                <div class="highlighter" id="highlight-line" 
+                    style=" left: <?php echo $textLine->getHPos(); ?>px; 
+                            top: <?php echo $textLine->getVPos(); ?>px; 
+                            width: <?php echo $textLine->getWidth(); ?>px; 
+                            height: <?php echo $textLine->getHeight(); ?>px; 
+                            filter: alpha(opacity=50)" >
+                </div>
+            <?php } ?>
+            <script>
+                $("button[id*=lines]").click(function () {
+                $("div[id*=highlight-line]").toggle();
+                });    
+            </script>
+        
+            <?php foreach ($textBlocks as $textBlock) { ?>
+                <div class="highlighter" id="highlight-block" 
+                    style=" left: <?php echo $textBlock->getHPos(); ?>px; 
+                            top: <?php echo $textBlock->getVPos(); ?>px; 
+                            width: <?php echo $textBlock->getWidth(); ?>px; 
+                            height: <?php echo $textBlock->getHeight(); ?>px; 
+                            filter: alpha(opacity=50)" >
+                </div>
+            <?php } ?>
+            <script>
+                $("button[id*=blocks]").click(function () {
+                $("div[id*=highlight-block]").toggle();
+                });    
+            </script>
+            
+            <div class="highlighter" id="highlight-printspace" 
+                style=" left: <?php echo $printSpace->getHPos(); ?>px; 
+                        top: <?php echo $printSpace->getVPos(); ?>px; 
+                        width: <?php echo $printSpace->getWidth(); ?>px; 
+                        height: <?php echo $printSpace->getHeight(); ?>px; 
+                        filter: alpha(opacity=50)" >
+            </div>
+            <script>
+                $("button[id*=printspace]").click(function () {
+                $("div[id*=highlight-printspace]").toggle();
+                });    
+            </script>
+            
+                    
         </div>
     </body>
 </html>

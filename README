@@ -1,0 +1,13 @@
+ALTO Viewer
+-----------
+
+This viewer was developed to give a visual representation of ALTO XML Files.
+For more infromation on the ALTO XML standard, see the Library of Congress website: http://www.loc.gov/standards/alto/
+
+Currently the code is just for others to read and reuse as they wish, however I will endevour to develop a usable viewer with added functionality as time goes on.
+
+Page layers can be turned on and off by passing either a 0 or a 1 to the various parts of the querystring, e.g.:
+
+Also image scaling can be applied to the image. This does nothing more than alter the height and width attributes of the XHTML img tag, and alters all co-ordinate data accordingly to the ratios set in the URL (0.3 on both axis in this example)
+
+http://altoviewer.macdanosx.llgc.org.uk/?vScale=0.3&hScale=0.3&image=accaa00100072&strings=1&textLines=0&textBlocks=1&printSpace=1

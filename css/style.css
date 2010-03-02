@@ -2,55 +2,32 @@
     position: absolute;
     border: solid 1px #000;
 }
-.highlight-string {
+
+.highlighter {
+    position: absolute;
+    /* IE */
+    filter:alpha(opacity=50); 
+    /*Mozilla / Firefox */
+    -moz-opacity: 0.5;
+    /* Safari and Konqueror */
+    -khtml-opacity: 0.5;
+    /* CSS 3*/
+    opacity: 0.5;    
+}
+
+#highlight-string {
     border: solid 1px #f0f;
-    position: absolute;
     background-color: #00C;
-    /* IE */
-    filter:alpha(opacity=50); 
-    /*Mozilla / Firefox */
-    -moz-opacity: 0.5;
-    /* Safari and Konqueror */
-    -khtml-opacity: 0.5;
-    /* CSS 3*/
-    opacity: 0.5;
 }
-.highlight-line {
+#highlight-line {
     border: solid 1px #f00;
-    position: absolute;
     background-color: #99FF99;
-    /* IE */
-    filter:alpha(opacity=50); 
-    /*Mozilla / Firefox */
-    -moz-opacity: 0.5;
-    /* Safari and Konqueror */
-    -khtml-opacity: 0.5;
-    /* CSS 3*/
-    opacity: 0.5;
 }
-.highlight-block {
+#highlight-block {
     border: solid 1px #1f1;
-    position: absolute;
     background-color: #FFCCFF;
-    /* IE */
-    filter:alpha(opacity=50); 
-    /*Mozilla / Firefox */
-    -moz-opacity: 0.5;
-    /* Safari and Konqueror */
-    -khtml-opacity: 0.5;
-    /* CSS 3*/
-    opacity: 0.5;
 }
-.highlight-printspace {
+#highlight-printspace {
     border: solid 1px #00f;
-    position: absolute;
     background-color: #00CCFF;
-    /* IE */
-    filter:alpha(opacity=50); 
-    /*Mozilla / Firefox */
-    -moz-opacity: 0.5;
-    /* Safari and Konqueror */
-    -khtml-opacity: 0.5;
-    /* CSS 3*/
-    opacity: 0.5;
 }
