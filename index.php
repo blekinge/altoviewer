@@ -19,8 +19,10 @@ $vScale = $_REQUEST['vScale'];
 $hScale = $_REQUEST['hScale'];
 $image = $_REQUEST['image'];
 
-$altoViewer = new AltoViewer(   '/Users/dof/Development/Source/altoview/alto', 
-                                '/Users/dof/Development/Source/altoview/images', 
+$config = parse_ini_file('./config/altoview.ini');
+
+$altoViewer = new AltoViewer(   $config['altoDir'], 
+                                $config['imageDir'], 
                                 $image, $vScale, $hScale);
 $imageSize = $altoViewer->getImageSize();
 $strings = $altoViewer->getStrings();
@@ -37,6 +39,7 @@ $scaledWidth = $imageSize[0] * $hScale;
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>          
+        <title>ALTO Viewer - <?php echo $image; ?> - <?php echo $vScale; ?> x <?php echo $hScale; ?> - (<?php echo $imageSize[0]; ?>x<?php echo $imageSize[1]; ?>px)</title>
     </head>
     <body>
         <div class="menu">
@@ -47,15 +50,8 @@ $scaledWidth = $imageSize[0] * $hScale;
                 <button id="blocks" >TextBlock</button><br />
                 <button id="printspace" >PrintSpace</button><br />
             </div>
-        
-            <div class="menuBox" id="infoBox">
-                <dl>
-                    <dt>Image</dt> <dd><?php echo $image; ?></dd>
-                    <dt>vScale</dt> <dd><?php echo $vScale; ?></dd>
-                    <dt>hScale</dt> <dd><?php echo $hScale; ?></dd>
-                </dl>
-            </div>
         </div>
+        
         <div id="image">
             <img 
                 src="images/<?php echo $image; ?>.tif.png" 
