@@ -39,24 +39,22 @@ $scaledWidth = $imageSize[0] * $hScale;
         <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>          
     </head>
     <body>
-        <h4>Toggle Layers</h4>
-        <button id="strings" >Strings</button><br />
-        <button id="lines" >TextLine</button><br />
-        <button id="blocks" >TextBlock</button><br />
-        <button id="printspace" >PrintSpace</button><br />
+        <div class="menu">
+            <div class="menuBox" id="toggleBox">
+                <span>Toggle Layers</span><br />
+                <button id="strings" >Strings</button><br />
+                <button id="lines" >TextLine</button><br />
+                <button id="blocks" >TextBlock</button><br />
+                <button id="printspace" >PrintSpace</button><br />
+            </div>
         
-        <div id="info">
-            <table>
-                <tr>
-                    <th>Image</th> <td><?php echo $image; ?></td>
-                </tr>
-                <tr>
-                    <th>vScale</th> <td><?php echo $vScale; ?></td>
-                </tr>
-                <tr>
-                    <th>hScale</th> <td><?php echo $hScale; ?></td>
-                </tr>
-            </table>
+            <div class="menuBox" id="infoBox">
+                <dl>
+                    <dt>Image</dt> <dd><?php echo $image; ?></dd>
+                    <dt>vScale</dt> <dd><?php echo $vScale; ?></dd>
+                    <dt>hScale</dt> <dd><?php echo $hScale; ?></dd>
+                </dl>
+            </div>
         </div>
         <div id="image">
             <img 

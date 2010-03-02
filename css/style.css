@@ -1,3 +1,21 @@
+body {
+    background-color: #303030;
+    color: #DCDCDC;
+    font-family: verdana, arial, sans-serif;
+}
+
+h4 {
+    font-size: 0.8em;
+}
+dl dt {
+    font-size: 0.8em;
+    float: left;
+}
+dd {
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
 #image {
     position: absolute;
     border: solid 1px #000;
@@ -30,4 +48,21 @@
 #highlight-printspace {
     border: solid 1px #00f;
     background-color: #00CCFF;
+}
+
+.menu {
+    float: right;
+}
+
+.menuBox {
+    padding: 7px;
+    border: solid 1px #000;
+    background-color: #2B2B2B;
+}
+
+#toggleBox {
+    display: block;
+}
+#infoBox {
+    display: block;
 }
