@@ -22,7 +22,7 @@ class AltoViewer
     
     protected $_altoDom;
     
-    protected $_imageSize;
+    protected $_imagephpSize;
     
     protected $_fileId;
     
@@ -126,6 +126,11 @@ class AltoViewer
     protected function _setImageSize() 
     {
         $this->_imageSize = getimagesize(($this->_imageDir . DIRECTORY_SEPARATOR . $this->_fileId . '.tif.png'));
+        $layout = $this->_altoDom->getElementsByTagName('Page');
+        $altoWidth = $layout->item(0)->getAttribute('WIDTH');
+	$imageScale = $altoWidth / $this->_imageSize[0];
+	$this->_imageSize[0] = $this->_imageSize[0]*$imageScale;
+	$this->_imageSize[1] = $this->_imageSize[1]*$imageScale;
     }
     
     /**

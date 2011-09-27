@@ -32,11 +32,11 @@ class AltoElement
     public function __construct($element) 
     {
         $this->_type = $element->tagName;
-        $this->_id = $element->getAttribute('default:ID');
-        $this->_hPos = $element->getAttribute('default:HPOS');
-        $this->_vPos = $element->getAttribute('default:VPOS');
-        $this->_height = $element->getAttribute('default:HEIGHT');
-        $this->_width = $element->getAttribute('default:WIDTH');
+        $this->_id = $element->getAttribute('ID');
+        $this->_hPos = $element->getAttribute('HPOS');
+        $this->_vPos = $element->getAttribute('VPOS');
+        $this->_height = $element->getAttribute('HEIGHT');
+        $this->_width = $element->getAttribute('WIDTH');
     }
     
     /**
